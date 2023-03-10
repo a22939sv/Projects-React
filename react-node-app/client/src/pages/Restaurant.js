@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 
 
-const Restaurant = (props) => {
+const Restaurant = () => {
     const { id } = useParams();
     const [restaurant, setRestaurant] = useState([{}]);
 
@@ -27,7 +27,7 @@ const Restaurant = (props) => {
     return (
         <div className="container-fluid restaurant-app">
             <div className="row">
-                <h1>Pagina de Restaurant{restaurant.name}!!</h1>
+                <h1>Pagina de Restaurant{restaurant.id}!!</h1>
             </div>
         </div>
     );
