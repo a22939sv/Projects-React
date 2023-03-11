@@ -139,7 +139,7 @@ body::-webkit-scrollbar-thumb {
     align-items: flex-start;
 }
 
-.restaurant-list > .img-restaurant-list {
+.img-restaurant-list {
     border-radius: 15px;
     position: relative;
     width: 250px;
@@ -147,7 +147,7 @@ body::-webkit-scrollbar-thumb {
     transition: transform 1s;
 }
 
-.restaurant-list > .img-restaurant-list:hover {
+.img-restaurant-list:hover {
     cursor: pointer;
     transform: scale(1.03);
 }

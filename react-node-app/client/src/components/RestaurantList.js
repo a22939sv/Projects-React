@@ -10,7 +10,7 @@ const RestaurantList = (props) => {
   return (
     <>
       {props.restaurants.map((restaurant, index) => (
-        
+
         <div key={index} className="col restaurant-list">
           <Link to={getRestaurant(restaurant.id)}>
             <img

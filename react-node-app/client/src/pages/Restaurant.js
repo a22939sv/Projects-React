@@ -27,7 +27,9 @@ const Restaurant = () => {
     return (
         <div className="container-fluid restaurant-app">
             <div className="row">
-                <h1>Pagina de Restaurant{restaurant.id}!!</h1>
+                {restaurant.map((rest, index) => {
+                    return (<h1>{rest.name}</h1>)
+                })}
             </div>
         </div>
     );
