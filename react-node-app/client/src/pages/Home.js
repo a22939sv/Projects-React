@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../App.css";
+import "../css/App.css";
 import RestaurantList from "../components/RestaurantList";
 import RestaurantListHeading from "../components/RestaurantListHeading";
 import RestaurantFilter from "../components/RestaurantFilter";
@@ -55,7 +55,7 @@ const Home = () => {
     if (responseJson.data) {
       setCategory(responseJson.data);
     }
-  }
+  };
 
   const setRestaurantCategory = async (category) => {
     var url;
@@ -72,7 +72,7 @@ const Home = () => {
     if (responseJson.data) {
       setRestaurants(responseJson.data);
     }
-  }
+  };
 
   const setRestaurantStar = async (star) => {
     var url;
@@ -89,7 +89,7 @@ const Home = () => {
     if (responseJson.data) {
       setRestaurants(responseJson.data);
     }
-  }
+  };
 
   useEffect(() => {
     getRestaurantsRequest(searchValue);
@@ -105,45 +105,45 @@ const Home = () => {
 
   return (
     <section className="Home">
-    <div className="container-fluid restaurant-app">
-      <div className="row header">
-        <Header searchValue={searchValue} setSearchValue={setSearchValue} />
-      </div>
-      <div className="row ms-5 me-5">
-        <div className="row ms-1 mt-2 filter">
+      <div className="container-fluid restaurant-app">
+        <div className="row header">
+          <Header searchValue={searchValue} setSearchValue={setSearchValue} />
+        </div>
+        <div className="row ms-5 me-5">
+          <div className="row ms-1 mt-2 filter">
+            <div className="row mt-2 me-3">
+              <RestaurantFilter
+                category={category}
+                setRestaurantCategory={setRestaurantCategory}
+                setRestaurantStar={setRestaurantStar}
+                removeFilter={() => {
+                  document.getElementById("searchInput").value = "";
+                  document.getElementById("categoryInput").value = "";
+                  getRestaurantsRequest("");
+                }}
+              />
+            </div>
+          </div>
           <div className="row mt-2 me-3">
-            <RestaurantFilter 
-              category={category} 
-              setRestaurantCategory={setRestaurantCategory}
-              setRestaurantStar={setRestaurantStar}
-              removeFilter={() => {
-                document.getElementById("searchInput").value = "";
-                document.getElementById("categoryInput").value = "";
-                getRestaurantsRequest("");
-              }}
+            <RestaurantListHeading
+              heading="Establecimientos que te pueden gustar"
+              img={imgEstablecimientos}
             />
           </div>
-        </div>
-        <div className="row mt-2 me-3">
-          <RestaurantListHeading
-            heading="Establecimientos que te pueden gustar"
-            img={imgEstablecimientos}
-          />
-        </div>
-        <div className="row d-flex mt-4 ms-1 me-1 mb-4 restaurants-list">
-          <RestaurantList restaurants={restaurants} />
-        </div>
-        <div className="row mt-4 me-3">
-          <RestaurantListHeading
-            heading="Lo mejor valorado"
-            img={imgEstablecimientosStar}
-          />
-        </div>
-        <div className="row d-flex mt-4 ms-1 me-1 mb-4 restaurants-list">
-          <RestaurantList restaurants={restaurantsScore} />
+          <div className="row d-flex mt-4 ms-1 me-1 mb-4 restaurants-list">
+            <RestaurantList restaurants={restaurants} />
+          </div>
+          <div className="row mt-4 me-3">
+            <RestaurantListHeading
+              heading="Lo mejor valorado"
+              img={imgEstablecimientosStar}
+            />
+          </div>
+          <div className="row d-flex mt-4 ms-1 me-1 mb-4 restaurants-list">
+            <RestaurantList restaurants={restaurantsScore} />
+          </div>
         </div>
       </div>
-    </div>
     </section>
   );
 };

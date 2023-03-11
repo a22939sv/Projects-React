@@ -120,6 +120,21 @@ const controller = {
       });
     }
   },
+  getByEmailPasswordUsuario: async (req, res) => {
+    try {
+      const { email, password } = req.params;
+      const sql = "select * from usuario where email = ? and password = ?";
+      const [rows, fields] = await pool.query(sql, [email, password]);
+      res.json({
+        data: rows,
+      });
+    } catch (error) {
+      console.log(error);
+      res.json({
+        status: error,
+      });
+    }
+  },
 };
 
 module.exports = controller;

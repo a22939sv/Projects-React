@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../MenuRestaurant.css";
+import "../css/MenuRestaurant.css";
 import { useParams } from "react-router-dom";
 
 const MenuRestaurant = () => {
@@ -55,7 +55,7 @@ const MenuRestaurant = () => {
                         <span>{product.name}</span>
                       </td>
                       <td>
-                        <span>${product.price}</span>
+                        <span>{product.price}€</span>
                       </td>
                     </tr>
                     <tr className="description">

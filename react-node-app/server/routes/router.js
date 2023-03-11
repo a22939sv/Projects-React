@@ -14,5 +14,6 @@ router.get(
 );
 router.get("/restaurant/star/:star", controller.getByStarRestaurant);
 router.get("/restaurant/menu/:idMenu", controller.getMenu);
+router.get("/usuario/:email/:password", controller.getByEmailPasswordUsuario);
 
 module.exports = router;

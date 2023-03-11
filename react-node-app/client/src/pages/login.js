@@ -1,8 +1,36 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../Login.css";
+import "../css/Login.css";
 
 const Login = () => {
+  var email;
+  var password;
+
+  const setEmail = (mail) => {
+    email = mail;
+  };
+
+  const setPassword = (pass) => {
+    password = pass;
+  };
+
+  const comprobarLogin = async () => {
+    const url = `/api/v1/usuario/${email}/${password}`;
+
+    const response = await fetch(url);
+
+    const responseJson = await response.json();
+
+    if (responseJson.data) {
+      if (responseJson.data.length !== 0) {
+        localStorage.setItem("user", JSON.stringify(responseJson.data));
+        window.location.href = "http://localhost:3000";
+      } else {
+        document.getElementById("msj").innerHTML = "Datos erroneos";
+      }
+    }
+  };
+
   return (
     <section className="vh-100">
       <div className="container py-4 h-100">
@@ -32,25 +60,29 @@ const Login = () => {
                         Sign into your account
                       </h5>
 
+                      <span id="msj"></span>
+
                       <div className="form-outline mb-4">
-                        <label className="form-label" for="form2Example17">
-                          Email
-                        </label>
+                        <label className="form-label">Email</label>
                         <input
                           type="email"
                           id="inputEmail"
                           className="form-control form-control-lg"
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                          }}
                         />
                       </div>
 
                       <div className="form-outline mb-4">
-                        <label className="form-label" for="form2Example27">
-                          Password
-                        </label>
+                        <label className="form-label">Password</label>
                         <input
                           type="password"
                           id="inputPassword"
                           className="form-control form-control-lg"
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                          }}
                         />
                       </div>
 
@@ -58,6 +90,7 @@ const Login = () => {
                         <button
                           className="btn btn-dark btn-lg btn-block"
                           type="button"
+                          onClick={comprobarLogin}
                         >
                           Login
                         </button>
