@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useParams } from "react-router-dom";
+import "../Restaurant.css";
 
 const Restaurant = () => {
   const { id } = useParams();
@@ -27,21 +28,19 @@ const Restaurant = () => {
   }, [id]);
 
   return (
-    <>
+    <div className="container-fluid">
       {restaurant.map((rest, index) => (
-        <div className="container-fluid restaurant-app">
-          <div className="row">
-            <Link to={getMenuRestaurant(rest.id)}>
-              <img
-                className="img-restaurant-list"
-                src={rest.img}
-                alt="restaurant"
-              ></img>
-            </Link>
-          </div>
+        <div key={index} className="row">
+          <Link to={getMenuRestaurant(rest.id)}>
+            <img
+              className="img-restaurant-menu"
+              src={rest.img}
+              alt="restaurant"
+            ></img>
+          </Link>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 

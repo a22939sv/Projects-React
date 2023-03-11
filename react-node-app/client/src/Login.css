@@ -1,0 +1,19 @@
+.login-card {
+    border-radius: 1rem;
+}
+
+.login-img {
+    border-radius: 1rem 0 0 1rem;
+}
+
+.login-h5 {
+    letter-spacing: 1px;
+}
+
+.login-p {
+    color: #393f81;
+}
+
+.login-a {
+    color: #393f81;
+}
