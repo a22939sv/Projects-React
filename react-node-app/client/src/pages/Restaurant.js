@@ -28,18 +28,59 @@ const Restaurant = () => {
   }, [id]);
 
   return (
-    <div className="container-fluid">
-      {restaurant.map((rest, index) => (
-        <div key={index} className="row">
-          <Link to={getMenuRestaurant(rest.id)}>
+    <div className="wrapper">
+      <div className="widget">
+        {restaurant.map((rest, index) => (
+          <>
             <img
-              className="img-restaurant-menu"
+              className="widget__photo"
               src={rest.img}
               alt="restaurant"
             ></img>
-          </Link>
-        </div>
-      ))}
+            <Link to={getMenuRestaurant(rest.id)}>
+              <div className="widget__button">View Menu</div>
+            </Link>
+            <div className="widget__details">
+              <div className="widget__badges">
+                <div className="widget__badge">Star</div>
+                <div className="widget__badge widget__badge--rating">
+                  {rest.star}
+                </div>
+              </div>
+              <div className="widget__name">{rest.name}</div>
+              <div className="widget__type">{rest.category}</div>
+              <div className="widget__info">
+                <span>193 Fairchild Drive, Mountain View - CA</span>
+                <span>15 minute walk</span>
+              </div>
+              <div className="widget__hidden">
+                <table className="widget__table">
+                  <tr>
+                    <td>Type</td>
+                    <td>Brunch, Lunch, Dinner</td>
+                  </tr>
+                  <tr>
+                    <td>Alcohol</td>
+                    <td>Cocktails</td>
+                  </tr>
+                  <tr>
+                    <td>Credit-cards</td>
+                    <td>Yes</td>
+                  </tr>
+                  <tr>
+                    <td>Wi-Fi</td>
+                    <td>Yes</td>
+                  </tr>
+                  <tr>
+                    <td>Outdoor Seating</td>
+                    <td>No</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </>
+        ))}
+      </div>
     </div>
   );
 };

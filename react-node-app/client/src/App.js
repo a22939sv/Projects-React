@@ -5,7 +5,7 @@ import MenuRestaurant from "./pages/MenuRestaurant";
 import Restaurant from "./pages/Restaurant";
 
 const NotFound = () => {
-  return <>Ha llegaado a un página que no existe</>;
+  return <>Ha llegado a un página que no existe</>;
 };
 
 const App = () => {
