@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/MenuRestaurant.css";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const MenuRestaurant = () => {
   const { id } = useParams();
@@ -39,34 +39,45 @@ const MenuRestaurant = () => {
   return (
     <>
       {restaurant.map((rest, index) => (
-        <section
-          key={index}
-          id="specialssection"
-          className="specials-container"
-        >
-          <div id="special_component" className="menuStyle">
-            <h1>{rest.name}</h1>
-            <div className="specials-table-container">
-              {menu.map((product, index) => (
-                <table key={index}>
-                  <tbody>
-                    <tr className="nameandprice">
-                      <td>
-                        <span>{product.name}</span>
-                      </td>
-                      <td>
-                        <span>{product.price}€</span>
-                      </td>
-                    </tr>
-                    <tr className="description">
-                      <td>{product.description}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              ))}
+        <>
+          <section
+            key={index}
+            id="specialssection"
+            className="specials-container"
+          >
+            <div id="special_component" className="menuStyle">
+              <h1>{rest.name}</h1>
+              <div className="specials-table-container">
+                {menu.map((product, index) => (
+                  <table key={index}>
+                    <tbody>
+                      <tr className="nameandprice">
+                        <td>
+                          <span>{product.name}</span>
+                        </td>
+                        <td>
+                          <span>{product.price}€</span>
+                        </td>
+                      </tr>
+                      <tr className="description">
+                        <td>{product.description}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                ))}
+              </div>
             </div>
+          </section>
+          <div className="d-flex align-items-center justify-content-center">
+            <Link to={"/restaurant/" + rest.id + "/menu/" + rest.idMenu}>
+              <input
+                type="button"
+                className="btn-product"
+                value="Realizar Compras"
+              ></input>
+            </Link>
           </div>
-        </section>
+        </>
       ))}
     </>
   );

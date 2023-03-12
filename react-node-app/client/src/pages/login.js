@@ -26,7 +26,9 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(responseJson.data));
         window.location.href = "http://localhost:3000";
       } else {
-        document.getElementById("msj").innerHTML = "Datos erroneos";
+        document.getElementById("msj").innerHTML = "Datos erroneos!!!";
+        document.getElementById("inputEmail").style.border = "1px solid red";
+        document.getElementById("inputPassword").style.border = "1px solid red";
       }
     }
   };
@@ -56,11 +58,11 @@ const Login = () => {
                         />
                       </div>
 
+                      <span id="msj"></span>
+
                       <h5 className="fw-normal login-h5 mb-3 pb-3">
                         Sign into your account
                       </h5>
-
-                      <span id="msj"></span>
 
                       <div className="form-outline mb-4">
                         <label className="form-label">Email</label>

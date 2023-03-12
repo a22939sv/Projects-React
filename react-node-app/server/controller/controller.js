@@ -108,7 +108,7 @@ const controller = {
     try {
       const { idMenu } = req.params;
       const sql =
-        "select distinct producto.id, producto.name, producto.description, producto.price from producto, producto_menu where producto_menu.idMenu = ? ";
+        "select distinct producto.id, producto.name, producto.description, producto.price, producto.img from producto, producto_menu where producto_menu.idMenu = ? ";
       const [rows, fields] = await pool.query(sql, [idMenu]);
       res.json({
         data: rows,

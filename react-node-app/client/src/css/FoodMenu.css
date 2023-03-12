@@ -1,0 +1,80 @@
+.menu-ctn {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    margin-bottom: min(4rem, 10vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.food-item-card {
+    width: 350px;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    background-color: #282e38;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.food-img-ctn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 1s;
+}
+
+.food-img-ctn:hover {
+    transform: scale(1.05);
+}
+
+.food-desc-ctn {
+    padding: 1.5rem;
+}
+
+.name-and-price {
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name {
+    color: #FFD369;
+}
+
+span.price {
+    font: 600 normal 1.5rem/1.5rem 'Sora', sans-serif;
+}
+
+.btn-product {
+    background-color: #FFD369;
+    font-size: x-large;
+    border: none;
+    border-radius: 7px;
+    margin-bottom: 15px;
+    transition: 1s;
+}
+
+.btn-product:hover {
+    background-color: #ffbf2a;
+    transform: scale(1.05);
+}
+
+@media screen and (min-width: 560px) {
+    .menu-ctn {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: auto auto;
+    }
+    .food-item-card {
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (min-width: 980px) {
+    .menu-ctn {
+        gap: 1.5rem;
+        grid-template-columns: auto auto auto;
+    }
+}

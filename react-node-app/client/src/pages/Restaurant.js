@@ -38,7 +38,7 @@ const Restaurant = () => {
               alt="restaurant"
             ></img>
             <Link to={getMenuRestaurant(rest.id)}>
-              <div className="widget__button">View Menu</div>
+              <div className="widget__button">Ver Menu</div>
             </Link>
             <div className="widget__details">
               <div className="widget__badges">
@@ -50,30 +50,25 @@ const Restaurant = () => {
               <div className="widget__name">{rest.name}</div>
               <div className="widget__type">{rest.category}</div>
               <div className="widget__info">
-                <span>193 Fairchild Drive, Mountain View - CA</span>
-                <span>15 minute walk</span>
+                <span>{rest.address}</span>
               </div>
               <div className="widget__hidden">
                 <table className="widget__table">
                   <tr>
                     <td>Type</td>
-                    <td>Brunch, Lunch, Dinner</td>
-                  </tr>
-                  <tr>
-                    <td>Alcohol</td>
-                    <td>Cocktails</td>
+                    <td>{rest.type}</td>
                   </tr>
                   <tr>
                     <td>Credit-cards</td>
-                    <td>Yes</td>
+                    <td>{rest.credit_card === 0 ? "No" : "Yes"}</td>
                   </tr>
                   <tr>
                     <td>Wi-Fi</td>
-                    <td>Yes</td>
+                    <td>{rest.wifi === 0 ? "No" : "Yes"}</td>
                   </tr>
                   <tr>
                     <td>Outdoor Seating</td>
-                    <td>No</td>
+                    <td>{rest.outdoor_seating === 0 ? "No" : "Yes"}</td>
                   </tr>
                 </table>
               </div>

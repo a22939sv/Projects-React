@@ -3,29 +3,36 @@ import { Link } from "react-router-dom";
 import StarRatings from "./StarRatings";
 
 function getRestaurant(id) {
-  return "/restaurant/"+id;
+  return "/restaurant/" + id;
 }
 
 const RestaurantList = (props) => {
   return (
     <>
-      {props.restaurants.map((restaurant, index) => (
-
-        <div key={index} className="col restaurant-list">
-          <Link to={getRestaurant(restaurant.id)}>
-            <img
-              className="img-restaurant-list"
-              src={restaurant.img}
-              alt="restaurant"
-            ></img>
-          </Link>
-          <h4 className="m-1 name-restaurant-list">{restaurant.name}</h4>
-          <div className="d-flex">
-            <p className="ms-1 me-2 name-restaurant-list">{restaurant.category}</p>
-            <StarRatings star={restaurant.star} />
+      {props.restaurants.length === 0 ? (
+        <h2 className="d-flex align-items-center justify-content-center">
+          No se han encontrado restaurantes...
+        </h2>
+      ) : (
+        props.restaurants.map((restaurant, index) => (
+          <div key={index} className="col restaurant-list">
+            <Link to={getRestaurant(restaurant.id)}>
+              <img
+                className="img-restaurant-list"
+                src={restaurant.img}
+                alt="restaurant"
+              ></img>
+            </Link>
+            <h4 className="m-1 name-restaurant-list">{restaurant.name}</h4>
+            <div className="d-flex">
+              <p className="ms-1 me-2 name-restaurant-list">
+                {restaurant.category}
+              </p>
+              <StarRatings star={restaurant.star} />
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </>
   );
 };
