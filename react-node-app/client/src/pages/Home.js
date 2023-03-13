@@ -6,6 +6,8 @@ import RestaurantListHeading from "../components/RestaurantListHeading";
 import RestaurantFilter from "../components/RestaurantFilter";
 import Header from "../components/Header";
 
+/* https://getbootstrap.com/docs/5.0/examples/cheatsheet */
+
 const Home = () => {
   const imgEstablecimientos =
     "https://res.cloudinary.com/glovoapp/w_48,h_48,f_auto,q_auto:best/CX/new_backend_driven_home_screen/newUserRecommendationsWidgetIconLight";

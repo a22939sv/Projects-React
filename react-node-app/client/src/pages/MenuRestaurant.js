@@ -68,15 +68,19 @@ const MenuRestaurant = () => {
               </div>
             </div>
           </section>
-          <div className="d-flex align-items-center justify-content-center">
-            <Link to={"/restaurant/" + rest.id + "/menu/" + rest.idMenu}>
-              <input
-                type="button"
-                className="btn-product"
-                value="Realizar Compras"
-              ></input>
-            </Link>
-          </div>
+          {localStorage.getItem("user") ? (
+            <div className="d-flex align-items-center justify-content-center">
+              <Link to={"/restaurant/" + rest.id + "/menu/" + rest.idMenu}>
+                <input
+                  type="button"
+                  className="btn-product"
+                  value="Realizar Compras"
+                ></input>
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
         </>
       ))}
     </>
