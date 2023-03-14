@@ -8,8 +8,9 @@ const SearchBox = () => {
         type="search"
         placeholder="Search"
         aria-label="Search"
+        title="Buscar peliculas"
       />
-      <button className="btn btn-outline-primary" type="submit">
+      <button title="Buscar peliculas" className="btnSearch" type="submit">
         Search
       </button>
     </form>

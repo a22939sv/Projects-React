@@ -5,7 +5,7 @@ import SearchBox from "./SearchBox";
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light barraNavegacion">
+    <nav className="navbar navbar-expand-sm navbar-light barraNavegacion">
       <div className="container-fluid">
         <LogoBox />
         <div className="navbar-collapse" id="navbarSupportedContent">

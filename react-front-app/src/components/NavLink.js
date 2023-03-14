@@ -2,7 +2,7 @@ import React from "react";
 
 const NavLink = () => {
   return (
-    <ul className="navbar-nav d-flex me-auto mb-2 mb-lg-0">
+    <ul className="navbar-nav d-flex me-auto mb-lg-0">
       <li className="nav-item">
         <a className="nav-link text-white active" href="/" aria-current="page">
           Home
