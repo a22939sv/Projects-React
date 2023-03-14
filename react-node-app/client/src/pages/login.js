@@ -70,6 +70,11 @@ const Login = () => {
                           type="email"
                           id="inputEmail"
                           className="form-control form-control-lg"
+                          onKeyUp={(e) => {
+                            if (e.keyCode === 13) {
+                              document.getElementById("inputSubmit").click();
+                            }
+                          }}
                           onChange={(e) => {
                             setEmail(e.target.value);
                           }}
@@ -82,6 +87,11 @@ const Login = () => {
                           type="password"
                           id="inputPassword"
                           className="form-control form-control-lg"
+                          onKeyUp={(e) => {
+                            if (e.keyCode === 13) {
+                              document.getElementById("inputSubmit").click();
+                            }
+                          }}
                           onChange={(e) => {
                             setPassword(e.target.value);
                           }}
@@ -92,6 +102,7 @@ const Login = () => {
                         <button
                           className="btn btn-dark btn-lg btn-block"
                           type="button"
+                          id="inputSubmit"
                           onClick={comprobarLogin}
                         >
                           Login

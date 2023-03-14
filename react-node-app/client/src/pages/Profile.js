@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/Profile.css";
 
@@ -6,6 +6,16 @@ const Profile = () => {
   if (localStorage.getItem("user")) {
     var user = JSON.parse(localStorage.getItem("user"))[0];
   }
+
+  const [compras, setCompras] = useState([]);
+
+  // const getCompras = async () => {
+  //   const url = "";
+  // }
+
+  // useEffect(() => {
+  //   getCompras();
+  // }, []);
 
   return (
     <div className="container-profile">

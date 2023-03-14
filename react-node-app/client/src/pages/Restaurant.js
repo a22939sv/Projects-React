@@ -31,7 +31,7 @@ const Restaurant = () => {
     <div className="wrapper">
       <div className="widget">
         {restaurant.map((rest, index) => (
-          <>
+          <div key={index}>
             <img
               className="widget__photo"
               src={rest.img}
@@ -54,26 +54,28 @@ const Restaurant = () => {
               </div>
               <div className="widget__hidden">
                 <table className="widget__table">
-                  <tr>
-                    <td>Type</td>
-                    <td>{rest.type}</td>
-                  </tr>
-                  <tr>
-                    <td>Credit-cards</td>
-                    <td>{rest.credit_card === 0 ? "No" : "Yes"}</td>
-                  </tr>
-                  <tr>
-                    <td>Wi-Fi</td>
-                    <td>{rest.wifi === 0 ? "No" : "Yes"}</td>
-                  </tr>
-                  <tr>
-                    <td>Outdoor Seating</td>
-                    <td>{rest.outdoor_seating === 0 ? "No" : "Yes"}</td>
-                  </tr>
+                  <tbody>
+                    <tr>
+                      <td>Type</td>
+                      <td>{rest.type}</td>
+                    </tr>
+                    <tr>
+                      <td>Credit-cards</td>
+                      <td>{rest.credit_card === 0 ? "No" : "Yes"}</td>
+                    </tr>
+                    <tr>
+                      <td>Wi-Fi</td>
+                      <td>{rest.wifi === 0 ? "No" : "Yes"}</td>
+                    </tr>
+                    <tr>
+                      <td>Outdoor Seating</td>
+                      <td>{rest.outdoor_seating === 0 ? "No" : "Yes"}</td>
+                    </tr>
+                  </tbody>
                 </table>
               </div>
             </div>
-          </>
+          </div>
         ))}
       </div>
     </div>

@@ -135,6 +135,41 @@ const controller = {
       });
     }
   },
+  postOrder: async (req, res) => {
+    try {
+      const { id, date } = req.params;
+      const sql = "insert into pedido (id, idusuario, fecha) values (0,?,?)";
+      const [rows, fields] = await pool.query(sql, [id, date]);
+      res.json({
+        data: rows,
+      });
+    } catch (error) {
+      console.log(error);
+      res.json({
+        status: error,
+      });
+    }
+  },
+  postLineOrder: async (req, res) => {
+    try {
+      const { idpedido, idproducto, cantidad } = req.params;
+      const sql =
+        "insert into linea_pedido (id, idpedido, idproducto, cantidad) values (0,?,?,?)";
+      const [rows, fields] = await pool.query(sql, [
+        idpedido,
+        idproducto,
+        cantidad,
+      ]);
+      res.json({
+        data: rows,
+      });
+    } catch (error) {
+      console.log(error);
+      res.json({
+        status: error,
+      });
+    }
+  },
 };
 
 module.exports = controller;

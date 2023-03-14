@@ -33,7 +33,7 @@ const MenuRestaurant = () => {
 
   useEffect(() => {
     getRestaurant(id);
-    restaurant.map((rest, index) => getMenu(rest.idMenu));
+    restaurant.map((rest) => getMenu(rest.idMenu));
   }, [id, restaurant]);
 
   return (

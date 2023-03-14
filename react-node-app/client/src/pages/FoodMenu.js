@@ -77,6 +77,55 @@ const FoodMenu = () => {
     saveToLocalStorage(newCompras);
   };
 
+  const insertOrder = async () => {
+    const user = JSON.parse(localStorage.getItem("user"))[0];
+
+    // crea un nuevo objeto `Date`
+    var today = new Date();
+    // `getDate()` devuelve el día del mes (del 1 al 31)
+    var day = today.getDate();
+    // `getMonth()` devuelve el mes (de 0 a 11)
+    var month = today.getMonth() + 1;
+    // `getFullYear()` devuelve el año completo
+    var year = today.getFullYear();
+    // muestra la fecha de hoy en formato `YYYY-MM-DD`
+    const date = `${year}-${month}-${day}`;
+
+    const compras = JSON.parse(localStorage.getItem("compras"));
+
+    const url = `/api/v1/order/${user.id}/${date}`;
+
+    const response = await fetch(url);
+
+    const responseJson = await response.json();
+
+    var insertId = responseJson.data.insertId;
+
+    if (responseJson.data) {
+      console.log(responseJson.data);
+    } else {
+      console.log(responseJson);
+    }
+
+    compras.forEach(async (product) => {
+      const url = `/api/v1/lineorder/${insertId}/${product.id}/1`;
+
+      const response = await fetch(url);
+
+      const responseJson = await response.json();
+
+      if (responseJson.data) {
+        console.log(responseJson.data);
+      } else {
+        console.log(responseJson);
+      }
+    });
+
+    localStorage.removeItem("compras");
+    alert("Pedido realizado correctamente");
+    window.location.href = `http://localhost:3000/restaurant/${restaurant[0].id}/menu/${menu[0].id}`;
+  };
+
   return (
     <>
       {restaurant.map((rest, index) => (
@@ -147,6 +196,7 @@ const FoodMenu = () => {
                 type="button"
                 className="btn-product w-25"
                 value="Aceptar Compra"
+                onClick={insertOrder}
               ></input>
             </div>
           ) : (
