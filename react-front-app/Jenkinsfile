@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools{
+        nodejs '18.15.0'
+    }
     environment {
         CI = 'true'
     }
