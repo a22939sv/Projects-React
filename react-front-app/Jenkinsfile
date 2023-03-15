@@ -16,7 +16,6 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'chmod +x -R ${env.WORKSPACE}'
                 sh './Projects-React/react-front-app/jenkins/scripts/test.sh'
             }
         }
