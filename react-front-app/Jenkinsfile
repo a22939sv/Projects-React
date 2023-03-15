@@ -1,53 +1,35 @@
-#!groovy
-
-node {
-   // ------------------------------------
-   // -- ETAPA: Compilar
-   // ------------------------------------
-   stage 'Compilar'
-   
-   // -- Configura variables
-   echo 'Configurando variables'
-   def mvnHome = tool 'M3'
-   env.PATH = "${mvnHome}/bin:${env.PATH}"
-   echo "var mvnHome='${mvnHome}'"
-   echo "var env.PATH='${env.PATH}'"
-   
-   // -- Descarga código desde SCM
-   echo 'Descargando código de SCM'
-   sh 'rm -rf *'
-   checkout scm
-   
-   // -- Compilando
-   echo 'Compilando aplicación'
-   sh 'mvn clean compile'
-   
-   // ------------------------------------
-   // -- ETAPA: Test
-   // ------------------------------------
-   stage 'Test'
-   echo 'Ejecutando tests'
-   try{
-      sh 'mvn verify'
-      step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-   }catch(err) {
-      step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
-      if (currentBuild.result == 'UNSTABLE')
-         currentBuild.result = 'FAILURE'
-      throw err
-   }
-   
-   // ------------------------------------
-   // -- ETAPA: Instalar
-   // ------------------------------------
-   stage 'Instalar'
-   echo 'Instala el paquete generado en el repositorio maven'
-   sh 'mvn install -Dmaven.test.skip=true'
-   
-   // ------------------------------------
-   // -- ETAPA: Archivar
-   // ------------------------------------
-   stage 'Archivar'
-   echo 'Archiva el paquete el paquete generado en Jenkins'
-   step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar, **/target/*.war', fingerprint: true])
+pipeline {
+    agent {
+        docker {
+            image 'node:6-alpine'
+            args '-p 3000:3000'
+        }
+    }
+    parameters {
+        string(name: 'NOMBRE', defaultValue: '', description: 'Escribe tu nombre')
+    }
+    environment {
+        CI = 'true'
+        NAME = params.NOMBRE
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "El nombre introducido es ${NAME}"
+                sh './jenkins/scripts/test.sh'
+            }
+        }
+        stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+    }
 }

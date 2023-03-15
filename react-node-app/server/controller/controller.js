@@ -170,6 +170,26 @@ const controller = {
       });
     }
   },
+  getOrderByUser: async (req, res) => {
+    try {
+      const { idUser } = req.params;
+      const sql =
+        "select pedido.id, pedido.FECHA, linea_pedido.id, linea_pedido.idproducto, linea_pedido.cantidad from pedido, linea_pedido WHERE pedido.ID = linea_pedido.idpedido AND pedido.IDUSUARIO = ?";
+      const [rows, fields] = await pool.query(sql, [idUser]);
+      const sql2 = "select * from producto WHERE id = ?";
+      rows.forEach((element) => {});
+      const [rows2, fields2] = await pool.query(sql2, [rows[0].idproducto]);
+      res.json({
+        line_order: rows,
+        product: rows2,
+      });
+    } catch (error) {
+      console.log(error);
+      res.json({
+        status: error,
+      });
+    }
+  },
 };
 
 module.exports = controller;

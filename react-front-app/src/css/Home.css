@@ -13,7 +13,6 @@
 .containerHome {
     margin-bottom: 0rem;
     height: 92vh;
-    width: 103.5%;
     background-position: top center;
     background-repeat: no-repeat;
     background-color: #000000;
@@ -24,7 +23,11 @@
 .titleHome {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: bold;
-    font-size: 400%;
+    font-size: 800%;
+}
+
+.descriptionHome {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .capaContenido > .row {

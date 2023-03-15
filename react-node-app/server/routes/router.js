@@ -15,10 +15,11 @@ router.get(
 router.get("/restaurant/star/:star", controller.getByStarRestaurant);
 router.get("/restaurant/menu/:idMenu", controller.getMenu);
 router.get("/usuario/:email/:password", controller.getByEmailPasswordUsuario);
-router.get("/order/:id/:date", controller.postOrder);
 router.get(
   "/lineorder/:idpedido/:idproducto/:cantidad",
   controller.postLineOrder
 );
+router.get("/order/user/:idUser", controller.getOrderByUser);
+router.get("/order/:id/:date", controller.postOrder);
 
 module.exports = router;

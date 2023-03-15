@@ -9,13 +9,21 @@ const Profile = () => {
 
   const [compras, setCompras] = useState([]);
 
-  // const getCompras = async () => {
-  //   const url = "";
-  // }
+  const getCompras = async () => {
+    const url = "/order/user/:idUser/";
 
-  // useEffect(() => {
-  //   getCompras();
-  // }, []);
+    const response = await fetch(url);
+
+    const responseJson = await response.json();
+
+    if (responseJson.data) {
+      setCompras(responseJson.data);
+    }
+  };
+
+  useEffect(() => {
+    getCompras();
+  }, []);
 
   return (
     <div className="container-profile">
@@ -47,7 +55,13 @@ const Profile = () => {
           <h3>
             <b>Historial de Compras</b>
           </h3>
-          <p className="texto-projetos">Compras efectuadas</p>
+          {compras ? (
+            compras.map((order, index) => {
+              <p className="texto-projectos"></p>;
+            })
+          ) : (
+            <p className="texto-projetos">No tienes compras efectuadas</p>
+          )}
         </div>
       </main>
     </div>

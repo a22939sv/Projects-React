@@ -49,9 +49,9 @@ const Home = () => {
       </header>
       <main className="capaContenido container-fluid text-white">
         <div className="row containerHome">
-          <div className="d-flex flex-column align-items-center justify-content-end">
+          <div className="d-flex flex-column align-items-end justify-content-end">
             <h1 className="mb-3 titleHome">THE LAST OF US</h1>
-            <h1 className="ms-3 me-3 mb-5">
+            <h1 className="ms-3 me-3 mb-5 descriptionHome">
               En HBO Max encontrarás películas icónicas, series premiadas y
               mucho más.
             </h1>
