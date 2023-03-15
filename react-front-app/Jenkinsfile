@@ -16,7 +16,6 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "El nombre introducido es ${NAME}"
                 sh './jenkins/scripts/test.sh'
             }
         }
