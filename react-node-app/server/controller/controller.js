@@ -173,18 +173,26 @@ const controller = {
   getOrderByUser: async (req, res) => {
     try {
       const { idUser } = req.params;
-      const sql =
-        "select pedido.id, pedido.FECHA, linea_pedido.id, linea_pedido.idproducto, linea_pedido.cantidad from pedido, linea_pedido WHERE pedido.ID = linea_pedido.idpedido AND pedido.IDUSUARIO = ?";
+      const sql = "select * from  pedido where IDUSUARIO = ? order by ID";
       const [rows, fields] = await pool.query(sql, [idUser]);
-      const sql2 = "select * from producto WHERE id = ?";
-      var [rows2, fields2] = [[], []];
-      rows.forEach(async (element) => {
-        [rows2, fields2] = await pool.query(sql2, [element.idproducto]);
-        console.log(rows2);
+      const sql2 =
+        "select pedido.ID, pedido.FECHA, linea_pedido.id, linea_pedido.idproducto, linea_pedido.cantidad from pedido, linea_pedido WHERE pedido.ID = linea_pedido.idpedido AND pedido.IDUSUARIO = ?";
+      const [rows2, fields2] = await pool.query(sql2, [idUser]);
+      const sql3 = "select * from producto";
+      var [rows3, fields3] = await pool.query(sql3);
+      rows2.forEach(async (element) => {
+        var [rows4, fields4] = await pool.query(sql3, [element.idproducto]);
+        rows3 = rows4;
       });
       res.json({
-        line_order: rows,
-        product: rows2,
+        data: [
+          {
+            order: rows,
+          },
+          {
+            product: rows3,
+          },
+        ],
       });
     } catch (error) {
       console.log(error);

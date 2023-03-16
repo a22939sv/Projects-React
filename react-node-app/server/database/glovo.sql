@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-03-2023 a las 22:55:47
+-- Tiempo de generación: 16-03-2023 a las 20:55:06
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -42,11 +42,7 @@ CREATE TABLE `linea_pedido` (
 
 INSERT INTO `linea_pedido` (`id`, `idpedido`, `idproducto`, `cantidad`) VALUES
 (1, 6, 3, '1'),
-(2, 6, 2, '1'),
-(3, 7, 1, '1'),
-(4, 7, 4, '1'),
-(5, 7, 5, '1'),
-(6, 8, 6, '1');
+(2, 6, 2, '1');
 
 -- --------------------------------------------------------
 
@@ -88,9 +84,7 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`ID`, `IDUSUARIO`, `FECHA`) VALUES
-(6, 1, '2023-03-14'),
-(7, 1, '2023-03-14'),
-(8, 1, '2023-03-14');
+(6, 1, '2023-03-14');
 
 -- --------------------------------------------------------
 
@@ -271,7 +265,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`

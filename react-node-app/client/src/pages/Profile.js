@@ -3,14 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/Profile.css";
 
 const Profile = () => {
-  if (localStorage.getItem("user")) {
-    var user = JSON.parse(localStorage.getItem("user"))[0];
-  }
-
   const [compras, setCompras] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"))[0];
 
   const getCompras = async () => {
-    const url = "/order/user/:idUser/";
+    const url = "api/v1/order/user/1";
 
     const response = await fetch(url);
 
@@ -52,13 +49,26 @@ const Profile = () => {
 
       <main className="projetos">
         <div className="container-projetos">
-          <h3>
+          <h2>
             <b>Historial de Compras</b>
-          </h3>
-          {compras ? (
-            compras.line_order.map((order, index) => {
-              <p className="texto-projectos">{order.FECHA}</p>;
-            })
+          </h2>
+          {compras[0] ? (
+            compras[0].order.map((ord, index) => (
+              <div key={index}>
+                <h3 className="texto-projectos">
+                  <b>
+                    Pedido {index + 1} ({ord.FECHA.substring(0, 10)})
+                  </b>
+                </h3>
+                {compras[1].product.length !== 0
+                  ? compras[1].product.map((prod, index) => (
+                      <p key={index} className="ps-4">
+                        - {prod.name}
+                      </p>
+                    ))
+                  : "No hay productos"}
+              </div>
+            ))
           ) : (
             <p className="texto-projetos">No tienes compras efectuadas</p>
           )}
