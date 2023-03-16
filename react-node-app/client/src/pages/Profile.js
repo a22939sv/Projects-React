@@ -56,8 +56,8 @@ const Profile = () => {
             <b>Historial de Compras</b>
           </h3>
           {compras ? (
-            compras.map((order, index) => {
-              <p className="texto-projectos"></p>;
+            compras.line_order.map((order, index) => {
+              <p className="texto-projectos">{order.FECHA}</p>;
             })
           ) : (
             <p className="texto-projetos">No tienes compras efectuadas</p>

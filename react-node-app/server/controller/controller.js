@@ -177,8 +177,11 @@ const controller = {
         "select pedido.id, pedido.FECHA, linea_pedido.id, linea_pedido.idproducto, linea_pedido.cantidad from pedido, linea_pedido WHERE pedido.ID = linea_pedido.idpedido AND pedido.IDUSUARIO = ?";
       const [rows, fields] = await pool.query(sql, [idUser]);
       const sql2 = "select * from producto WHERE id = ?";
-      rows.forEach((element) => {});
-      const [rows2, fields2] = await pool.query(sql2, [rows[0].idproducto]);
+      var [rows2, fields2] = [[], []];
+      rows.forEach(async (element) => {
+        [rows2, fields2] = await pool.query(sql2, [element.idproducto]);
+        console.log(rows2);
+      });
       res.json({
         line_order: rows,
         product: rows2,
